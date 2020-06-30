@@ -7,9 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-    @RequestMapping(value = {"/login",""},method = RequestMethod.GET)
+    @RequestMapping(value = {"/tologin",""},method = RequestMethod.GET)
     public ModelAndView toLogin(){
         System.out.println("come in~");
         return new ModelAndView("login");
+    }
+
+    @RequestMapping(value = {"/login"},method = RequestMethod.POST)
+    public String login(){
+        System.out.println("login ~~");
+        return null;
     }
 }

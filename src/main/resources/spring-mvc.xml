@@ -25,6 +25,7 @@
 
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
     <!-- 配置返回视图的路径，以及识别后缀是jsp文件 -->
 <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
@@ -34,7 +35,7 @@
 <!--    </bean>-->
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath">
-            <value>/WEB-INF/html</value>
+            <value>/WEB-INF/html/</value>
         </property>
     </bean>
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
