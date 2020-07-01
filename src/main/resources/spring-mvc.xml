@@ -43,4 +43,14 @@
         <property name="order" value="0"></property>
         <property name="contentType" value="text/html;charset=UTF-8"></property>
     </bean>
+    <!--配置登录拦截器-->
+    <mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <mvc:exclude-mapping path="/login"/>
+        <mvc:exclude-mapping path="/**/*.html"/>
+        <mvc:exclude-mapping path="/**/static/**"/>
+        <bean class="com.jun.interceptor.LoginInterceptor"/>
+    </mvc:interceptor>
+</mvc:interceptors>
 </beans>
