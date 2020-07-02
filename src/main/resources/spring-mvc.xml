@@ -28,27 +28,27 @@
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
     <!-- 配置返回视图的路径，以及识别后缀是jsp文件 -->
-<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-<!--        <property name="prefix" value="/WEB-INF/static/pages/"/>-->
-<!--        <property name="suffix" value=".html"/>-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+<!--    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+<!--        <property name="templateLoaderPath">-->
+<!--            <value>/WEB-INF/html/</value>-->
+<!--        </property>-->
 <!--    </bean>-->
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath">
-            <value>/WEB-INF/html/</value>
-        </property>
-    </bean>
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="suffix" value=".html" />
-        <property name="order" value="0"></property>
-        <property name="contentType" value="text/html;charset=UTF-8"></property>
-    </bean>
+<!--    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+<!--        <property name="suffix" value=".html" />-->
+<!--        <property name="order" value="0"></property>-->
+<!--        <property name="contentType" value="text/html;charset=UTF-8"></property>-->
+<!--    </bean>-->
     <!--配置登录拦截器-->
     <mvc:interceptors>
     <mvc:interceptor>
         <mvc:mapping path="/**"/>
-        <mvc:exclude-mapping path="/login"/>
-        <mvc:exclude-mapping path="/**/*.html"/>
+        <mvc:exclude-mapping path="/user/login"/>
+        <mvc:exclude-mapping path="/**/*.jsp"/>
         <mvc:exclude-mapping path="/**/static/**"/>
         <bean class="com.jun.interceptor.LoginInterceptor"/>
     </mvc:interceptor>

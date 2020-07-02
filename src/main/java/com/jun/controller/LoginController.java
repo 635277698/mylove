@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/user")
 public class LoginController {
 //    @RequestMapping(value = {"/tologin",""},method = RequestMethod.GET)
 //    public ModelAndView toLogin(){
@@ -18,19 +19,18 @@ public class LoginController {
 //    }
 
     @RequestMapping(value = {"/login"},method = RequestMethod.POST)
-    public String login(HttpServletRequest request, HttpSession session, String username, String password){
+    public ModelAndView login(HttpServletRequest request, HttpSession session, String username, String password){
         System.out.println("login ~~");
         System.out.println("username: "+username);
         System.out.println("password: "+password);
         if (username.equals("zhangsan")  && password.equals("123")){
             System.out.println("登录成功");
-
             session.setAttribute("CURRENT_USER",new User(0,username,password));
-            return "show";
+            return new ModelAndView("show","username",username);
         }else{
             System.out.println("账号密码错误，请重新登录");
-            //return "redirect:login";
-            return null;
+            return new ModelAndView("login","errorMsg","login failed.");
+            //return null;
         }
 
     }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="./static/layui/css/layui.css">
+</head>
+<body>
+    <!-- 你的HTML代码 -->
+    <form class="layui-form" action="" method="post" >
+        <div class="layui-form-item">
+            <span>用户名：</span><input  type="text" name="username"/><br/>
+            <span>密&nbsp;码：</span><input type="text" name="password"/><br/>
+            <!--需要加上lay-submit=""，否则监听提交事件不生效; 增加type="button"的目的是解决form表单中出现button，导致弹出层闪退问题-->
+            <button type="button" lay-filter="sub" lay-submit="" class="layui-btn layui-btn-normal">登录</button>
+        </div>
+    </form>
+
+
+<script src="./static/layui/jquery-3.5.1.min.js"></script>
+<script src="./static/layui/layui.js"></script>
+<script>
+    //一般直接写在一个js文件中
+    // layui.use(['layer', 'form'], function(){
+    //     var layer = layui.layer
+    //         ,form = layui.form;
+    //
+    //     layer.msg('Hello World');
+    //     layer.alert('hello');
+    // });
+
+    layui.use(['layer','form'],function() {
+        var layer = layui.layer
+        ,form = layui.form;
+
+        //$ = layui.jquery;
+        //layer.alert('hello world2');
+
+        form.on('submit(sub)', function(data){
+            $.ajax({
+                url:'login',
+                method:'post',
+                data:data.field,
+                //async:true,
+                dataType:'text',
+                 success:function(res){
+                    if(res.code='0'){
+                        layer.msg("提交成功")
+                        window.location.href = "./show.html";
+
+                    }
+                    else{
+                        console.log("22");
+                        alert('1111');
+                    }
+
+                },
+                error:function (data) {
+                    console.log("33");
+                    layer.alert('响应失败');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
