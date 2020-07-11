@@ -2,6 +2,7 @@ package com.jun.controller;
 
 import com.jun.entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,19 +20,20 @@ public class LoginController {
 //    }
 
     @RequestMapping(value = {"/login"},method = RequestMethod.POST)
-    public ModelAndView login(HttpServletRequest request, HttpSession session, String username, String password){
+    public ModelAndView login(HttpServletRequest request, HttpSession session, @RequestBody User user){
         System.out.println("login ~~");
-        System.out.println("username: "+username);
-        System.out.println("password: "+password);
-        if (username.equals("zhangsan")  && password.equals("123")){
-            System.out.println("登录成功");
-            session.setAttribute("CURRENT_USER",new User(0,username,password));
-            return new ModelAndView("show","username",username);
-        }else{
-            System.out.println("账号密码错误，请重新登录");
-            return new ModelAndView("login","errorMsg","login failed.");
-            //return null;
-        }
+        System.out.println(user);
+        return null;
+        //System.out.println("password: "+password);
+//        if (username.equals("zhangsan")  && password.equals("123")){
+//            System.out.println("登录成功");
+//            session.setAttribute("CURRENT_USER",new User(0,username,password));
+//            return new ModelAndView("show","username",username);
+//        }else{
+//            System.out.println("账号密码错误，请重新登录");
+//            return new ModelAndView("login","errorMsg","login failed.");
+//            //return null;
+//        }
 
     }
 }

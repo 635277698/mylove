@@ -107,29 +107,18 @@
             }
             // 上载信息
             userInfo.password = sha256_digest(data.field.userPwd);
-            // util.httpRequest.post("user/login", userInfo, function (msg) {
-            //     if (msg.code === 200) {
-            //         window.location.href = "/index/";
-            //     } else {
-            //         layer.msg(msg.info, {
-            //             offset: '50px'
-            //             , icon: 2
-            //             , time: 1000
-            //         });
-            //     }
-            // });
-                alert("00");
-                $.ajax({
-                    url: "user/login",
-                    type: "POST",
-                    contentType: "application/json",
-                    data: json.stringify(data),
-                    dataType: "json",
-                    success: function (msg) {
-                        console.log(msg);
-                        callback(msg);
-                    }
-                });
+            util.httpRequest.post("user/login", userInfo, function (msg) {
+                if (msg.code === 200) {
+                    window.location.href = "/index/";
+                } else {
+                    layer.msg(msg.info, {
+                        offset: '50px'
+                        , icon: 2
+                        , time: 1000
+                    });
+                }
+            });
+
 
 
         });
